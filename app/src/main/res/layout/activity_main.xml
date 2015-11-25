@@ -1,5 +1,29 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="dheeraj.sachan.advancedandroidshit.fragment.MainActivityFragment"
-    tools:layout="@layout/fragment_main" android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff8533"
+        android:elevation="4dp">
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+    <android.support.v7.widget.ActionMenuView
+        android:id="@+id/one"
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.ActionMenuView>
+
+</LinearLayout>
