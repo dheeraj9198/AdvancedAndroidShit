@@ -3,9 +3,7 @@ package dheeraj.sachan.advancedandroidshit.activity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.internal.view.menu.MenuBuilder;
-import android.support.v7.widget.ActionMenuPresenter;
-import android.support.v7.widget.ActionMenuView;
+import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -19,6 +17,8 @@ import java.lang.reflect.Method;
 
 import dheeraj.sachan.advancedandroidshit.R;
 import dheeraj.sachan.advancedandroidshit.fragment.MainActivityFragment;
+import dheeraj.sachan.advancedandroidshit.test.CustomActionMenuPresenter;
+import dheeraj.sachan.advancedandroidshit.test.CustomActionMenuView;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onMenuOpened(featureId, menu);
     }
 
-    ActionMenuView actionMenuView;
+    CustomActionMenuView actionMenuView;
     Toolbar toolbar;
 
     @Override
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.tool);
-        actionMenuView = (ActionMenuView) findViewById(R.id.one);
+        actionMenuView = (CustomActionMenuView) findViewById(R.id.one);
         final Context context = this;
         MenuBuilder menuBuilder = new MenuBuilder(context);
         menuBuilder.setCallback(new MenuBuilder.Callback() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // setup a actionMenuPresenter which will use up as much space as it can, even with width=wrap_content
-        ActionMenuPresenter presenter = new ActionMenuPresenter(context);
+        CustomActionMenuPresenter presenter = new CustomActionMenuPresenter(context);
         presenter.setReserveOverflow(true);
         presenter.setWidthLimit(getResources().getDisplayMetrics().widthPixels - 40, true);
         presenter.setItemLimit(Integer.MAX_VALUE);
@@ -63,12 +63,13 @@ public class MainActivity extends AppCompatActivity {
         actionMenuView.setPresenter(presenter);
         presenter.updateMenuView(true);
 
-        MenuItem item = actionMenuView.getMenu().findItem(R.id.action_settings15);
-        SpannableStringBuilder builder = new SpannableStringBuilder("* Login");
-        // replace "*" with icon
-        builder.setSpan(new ImageSpan(this, android.R.drawable.ic_delete), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        item.setTitle(builder);
-
+        for (int k = 0; k < actionMenuView.getMenu().size(); k++) {
+            MenuItem item = actionMenuView.getMenu().getItem(k);
+            SpannableStringBuilder builder = new SpannableStringBuilder("*");
+            // replace "*" with icon
+            builder.setSpan(new ImageSpan(this, android.R.drawable.ic_delete), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            item.setTitle(builder);
+        }
        /* try {
             Method m = actionMenuView.getMenu().getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
             m.setAccessible(true);

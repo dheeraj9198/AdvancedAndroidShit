@@ -18,12 +18,12 @@
         android:layout_weight="1">
     </FrameLayout>
 
-    <android.support.v7.widget.ActionMenuView
+    <dheeraj.sachan.advancedandroidshit.test.CustomActionMenuView
         android:id="@+id/one"
         android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.ActionMenuView>
+    </dheeraj.sachan.advancedandroidshit.test.CustomActionMenuView>
 
 </LinearLayout>
